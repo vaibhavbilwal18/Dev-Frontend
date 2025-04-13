@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
 const Login = () => {
-  const [emailID, setEmailID] = useState("musk@gmail.com");
-  const [password, setPassword] = useState("Musk@123");
+  const [emailID, setEmailID] = useState("bilwal@gmail.com");
+  const [password, setPassword] = useState("Bilwal@123");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,12 +18,11 @@ const Login = () => {
         password: password,
       },{withCredentials: true}  
      );
-      
      dispatch(addUser(res.data));
      return navigate("/");
-     
     } catch (err) {
-      console.error("Error in login:", err);
+      setError(err?.response?.data || "Something went wrong");
+      
     }
   };
 
@@ -56,6 +56,7 @@ const Login = () => {
               />
             </fieldset>
           </div>
+          <p className=" flex justify-center  text-red-500">{error}</p>
           <div className="card-actions justify-end mt-6">
             <button 
               className="btn btn-primary" 
