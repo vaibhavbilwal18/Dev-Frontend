@@ -57,7 +57,8 @@ const NavBar = () => {
                   <span className="badge badge-neutral">New</span>
                 </Link>
               </li>
-              <li><a className="hover:bg-neutral-focus">Settings</a></li>
+              <li><Link to = "/connection" className="hover:bg-neutral-focus">Connection's</Link></li>
+              <li><Link to = "/request" className="hover:bg-neutral-focus">Request Users</Link></li>
               <li><a onClick={handleLogout} className="hover:bg-neutral-focus">Logout</a></li>
             </ul>
           </div>
