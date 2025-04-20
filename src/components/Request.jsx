@@ -10,7 +10,6 @@ const Requests = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log("Current requests in component:", requests);
 
   const reviewRequest = async (status, _id) => {
     try {
@@ -21,7 +20,6 @@ const Requests = () => {
       );
       dispatch(removeRequest(_id));
     } catch (err) {
-      console.error("Review request failed:", err);
       setError("Failed to process request");
     }
   };
@@ -32,16 +30,13 @@ const Requests = () => {
       const res = await axios.get(BASE_URL + "/user/requests/received", {
         withCredentials: true,
       });
-      console.log("API response data:", res.data);
       
       // Extract the data array from the response
       const requestsData = res.data.data || [];
-      console.log("Extracted requests data:", requestsData);
       
       // Dispatch the actual array of requests
       dispatch(addRequests(requestsData));
     } catch (err) {
-      console.error("Fetch requests failed:", err);
       setError("Failed to load requests");
     } finally {
       setLoading(false);
@@ -70,10 +65,8 @@ const Requests = () => {
 
       <div className="max-w-2xl mx-auto">
         {requests.map((request) => {
-          console.log("Rendering request:", request);
           
           if (!request.fromUserId) {
-            console.error("Missing fromUserId in request:", request);
             return null;
           }
 
