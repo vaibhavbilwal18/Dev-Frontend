@@ -126,8 +126,5 @@ const Login = () => {
     </div>
   );
 };
-<<<<<<< HEAD
+
 export default Login;
-=======
-export default Login;
->>>>>>> e7ad339397af1005810ff1d518a96757a629f4da
