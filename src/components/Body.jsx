@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Outlet , useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import Footer from './Footer'
 import Navbar from './NavBar'
 import axios from 'axios'
@@ -10,35 +10,38 @@ import { useDispatch, useSelector } from 'react-redux';
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const userData = useSelector((store) => store.user);
   
   const fetchUser = async() => {
-    if(userData) return;
+    // Skip fetch if user exists or on login page
+    if(userData || location.pathname === '/login') return;
+    
     try { 
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
       dispatch(addUser(res.data));
     } catch (error) {
-      if(error.response.status === 401) {
+      // Only redirect to login if not already on login page
+      if(error.response?.status === 401 && location.pathname !== '/login') {
         navigate("/login");
       }
-      // navigate("/login");
-      console.log(error);
+      console.error("Profile fetch error:", error);
     }
   };
 
   useEffect(() => {
-      fetchUser();
-  }, []);
+    fetchUser();
+  }, [location.pathname]); // Re-run when route changes
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      {location.pathname !== '/login' && <Navbar />}
       <main className="flex-1">
         <Outlet />
       </main>
-      <Footer />
+      {location.pathname !== '/login' && <Footer />}
     </div>
   )
 }

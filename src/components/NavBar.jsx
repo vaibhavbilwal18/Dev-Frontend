@@ -26,7 +26,7 @@ const NavBar = () => {
   return (
     <div className="navbar bg-neutral text-neutral-content shadow-sm">
       <div className="flex-1">
-        <Link  to = "/" className="btn btn-ghost text-xl">👨🏻‍💻 Dev-Cord</Link>
+        <p className="btn btn-ghost text-xl">🔗 Dev-Cord</p>
       </div>
       <div className="flex gap-2 items-center">
         <input 
@@ -57,6 +57,7 @@ const NavBar = () => {
                   <span className="badge badge-neutral">New</span>
                 </Link>
               </li>
+              <li><Link to = "/" className="hover:bg-neutral-focus">Feed's</Link></li>
               <li><Link to = "/connection" className="hover:bg-neutral-focus">Connection's</Link></li>
               <li><Link to = "/request" className="hover:bg-neutral-focus">Request Users</Link></li>
               <li><a onClick={handleLogout} className="hover:bg-neutral-focus">Logout</a></li>

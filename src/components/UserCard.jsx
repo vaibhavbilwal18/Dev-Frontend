@@ -3,9 +3,6 @@ import { BASE_URL } from '../utils/constants';
 import { useDispatch } from 'react-redux';
 import { removeFeed } from '../utils/feedSlice';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { addRequests } from '../utils/requestSlice';
-import { useEffect } from 'react';
 
 const UserCard = ({user}) => {
     const {firstName, lastName, photoUrl, age, gender, about , _id} = user;
