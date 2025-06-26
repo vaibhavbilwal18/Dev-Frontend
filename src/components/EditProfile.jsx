@@ -109,11 +109,12 @@ const EditProfile = ({ user }) => {
                   <div className="label">
                     <span className="label-text">About:</span>
                   </div>
-                  <input
-                    type="text"
+                  <textarea
                     value={about}
-                    className="input input-bordered w-full max-w-xs"
+                    rows="3"
+                    className="textarea textarea-bordered w-full max-w-xs min-h-[100px] resize-y"
                     onChange={(e) => setAbout(e.target.value)}
+                    placeholder="Tell us about yourself..."
                   />
                 </label>
               </div>
@@ -126,9 +127,32 @@ const EditProfile = ({ user }) => {
             </div>
           </div>
         </div>
-        <UserCard
-          user={{ firstName, lastName, photoUrl, age, gender, about }}
-        />
+         {/*  User Card Continue here  */}
+        <div>
+            <div className="card bg-base-300 w-96 shadow-sm ">
+                <figure className="px-4 pt-4">
+                    <img
+                        src={photoUrl}
+                        alt="Photo"
+                        className="rounded-xl max-h-64 w-auto object-contain"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "https://via.placeholder.com/150";
+                        }}
+                    />
+                </figure>
+                <div className="card-body">
+                    <h2 className="card-title">{firstName + " " + lastName}</h2>
+                    {age && gender && <p>Age: {age + " , Gender: " + gender}</p>}
+                    {about && <p>About: {about}</p>}
+                    {/* {<div className="card-actions flex justify-center mt-4">
+                        <button className="btn btn-primary rounded-full " onClick={ ()=> handleSendRequest("ignored" , _id)}>Ignore</button>
+                        <button className="btn btn-secondary rounded-full" onClick={ ()=> handleSendRequest("interested" , _id)}>Intrested</button>
+                    </div>} */}
+                </div>
+            </div>
+        </div>
+    
       </div>
       {showToast && (
         <div className="toast toast-top toast-center">

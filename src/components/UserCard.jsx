@@ -37,10 +37,10 @@ const UserCard = ({user}) => {
                     <h2 className="card-title">{firstName + " " + lastName}</h2>
                     {age && gender && <p>Age: {age + " , Gender: " + gender}</p>}
                     {about && <p>About: {about}</p>}
-                    <div className="card-actions flex justify-center mt-4">
+                    {<div className="card-actions flex justify-center mt-4">
                         <button className="btn btn-primary rounded-full " onClick={ ()=> handleSendRequest("ignored" , _id)}>Ignore</button>
                         <button className="btn btn-secondary rounded-full" onClick={ ()=> handleSendRequest("interested" , _id)}>Intrested</button>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </div>
